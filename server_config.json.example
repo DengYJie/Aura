@@ -1,0 +1,50 @@
+{
+  "server": {
+    "host": "0.0.0.0",
+    "port": 8080,
+    "database_path": ""
+  },
+  "context": {
+    "max_turns": 12,
+    "max_chars": 4000
+  },
+  "providers": {
+    "deepseek": {
+      "type": "openai_compatible",
+      "baseUrl": "https://api.deepseek.com/v1",
+      "model": "deepseek-chat",
+      "apiKey": "sk-在此填入你的DeepSeek密钥",
+      "temperature": 0.7,
+      "max_tokens": 2048
+    },
+    "openai": {
+      "type": "openai_compatible",
+      "baseUrl": "https://api.openai.com/v1",
+      "model": "gpt-4.1-mini",
+      "apiKey": "sk-在此填入你的OpenAI密钥",
+      "temperature": 0.7,
+      "max_tokens": 2048
+    },
+    "ollama": {
+      "type": "openai_compatible",
+      "baseUrl": "http://localhost:11434/v1",
+      "model": "llama3",
+      "apiKey": "",
+      "temperature": 0.7,
+      "max_tokens": 2048
+    }
+  },
+  "routing": {
+    "chat": "deepseek",
+    "sentiment": "deepseek",
+    "suggest": "deepseek",
+    "translate": "openai",
+    "default": "deepseek"
+  },
+  "prompts": {
+    "chat": "You are an intelligent desktop chat assistant. Reply naturally, clearly, and helpfully.",
+    "translate": "You are a professional translator. Translate the user's text directly and do not add explanation.",
+    "sentiment": "The user provides a recent decrypted local human-to-human conversation transcript. Analyze the sentiment of the other person's latest message using the previous few rounds as context. Output only one word: Positive, Neutral, or Negative.",
+    "suggest": "The user provides a recent decrypted local human-to-human conversation transcript. Generate exactly 3 short, natural replies for the user to send next. Use the previous few rounds as context. Separate the replies with '|', and output nothing else."
+  }
+}
